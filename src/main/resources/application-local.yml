@@ -1,0 +1,76 @@
+server:
+  port: 8081
+  undertow:
+    eager-filter-init: true
+    accesslog:
+      enabled: true
+      pattern: "%t %a %s \"%r\" %b (%D ms) %l"
+      dir: /home/ssp/log/log4j/script/access_log
+      prefix: access_${server.port}.
+      suffix: log
+
+spring:
+  kafka:
+    #    consumer:
+    #      bootstrap-servers:
+    #      group-id: group_id
+    #      auto-offset-reset: earliest
+    #      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    #      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+    producer:
+      bootstrap-servers: 172.20.0.109:9092
+  #      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+  #      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+  #      acks: all
+  #      retries: 1
+  #      batch-size: 1000
+  #      buffer-memory: 24568545
+  datasource:
+    url: jdbc:mariadb://192.168.3.12:3306/MIXER
+    username: { id }
+    password: { pass }
+    driver-class-name: org.mariadb.jdbc.Driver
+  profiles:
+    active: local
+  resources:
+    static-locations: application.yml
+
+  jpa:
+    database-platform: org.hibernate.dialect.MySQL5InnoDBDialect
+    open-in-view: false
+    show-sql: true
+    properties:
+      hibernate:
+        enable_lazy_load_no_trans: true
+    hibernate:
+      ddl-auto: validate
+      #      naming_strategy =  org.hibernate.cfg.ImprovedNamingStrategy
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+        implicit-strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
+    generate-ddl: false
+
+  redis:
+    cluster:
+      nodes: 10.251.1.240:7000,10.251.1.240:7001,10.251.1.240:7002,10.251.1.240:7003,10.251.1.240:7004,10.251.1.240:7005,10.251.1.240:7006,10.251.1.240:7007,10.251.1.240:7008,10.251.1.240:7009,10.251.1.241:7000,10.251.1.241:7001,10.251.1.241:7002,10.251.1.241:7003,10.251.1.241:7004,10.251.1.241:7005,10.251.1.241:7006,10.251.1.241:7007,10.251.1.241:7008,10.251.1.241:7009
+  #    host: 192.168.56.102
+  #    port: 6379
+  #    password: 1234
+
+logging:
+  file:
+    name: /home/ssp/log/log4j/script/script
+  level:
+    com:
+      ssp:
+        script: DEBUG
+
+dsp:
+  server: 127.0.0.1:8082
+  file:
+    path: /home/ssp/data/file/kafka
+
+ssp:
+  server: 127.0.0.1:8081
+
+lastmoment: false

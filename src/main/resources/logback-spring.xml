@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+    <springProperty scope="context" name="LOAD_BALANCING" source="server.port"/>
+    <include resource="log/console.xml" />
+    <include resource="log/file.xml" />
+    <root level="info">
+        <springProfile name="local">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="dailyRollingFileAppender"/>
+        </springProfile>
+        <springProfile name="chbeen">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="dailyRollingFileAppender"/>
+        </springProfile>
+        <springProfile name="japark">
+            <appender-ref ref="CONSOLE"/>
+            <appender-ref ref="dailyRollingFileAppender"/>
+        </springProfile>
+        <springProfile name="prod">
+            <appender-ref ref="dailyRollingFileAppender"/>
+        </springProfile>
+    </root>
+</configuration>

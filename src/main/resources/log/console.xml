@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<appender name="CONSOLE" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+        <charset>UTF-8</charset>
+        <pattern>[%-5p][%d{yyyy/MM/dd HH:mm:ss} %thread] %C{1} [%L] %m %n</pattern>
+    </encoder>
+</appender>

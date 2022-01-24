@@ -1,0 +1,19 @@
+server:
+  port: 8081
+
+spring:
+  application:
+    name: ssp
+  cloud:
+    config:
+      uri: http://10.251.1.243:9999
+  main:
+    allow-bean-definition-overriding: true
+
+logging:
+  file:
+    name: /home/ssp/log/log4j/script/script
+  level:
+    com:
+      ssp:
+        script: INFO
